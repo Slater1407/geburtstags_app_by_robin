@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geburtstags_app_by_robin/screens/birthday/birthdays.screen.dart';
-import 'package:geburtstags_app_by_robin/screens/dashboard.screen.dart';
-import 'package:geburtstags_app_by_robin/screens/settings.screen.dart';
+import 'package:geburtstags_app_by_robin/screens/dashboard/dashboard.screen.dart';
+import 'package:geburtstags_app_by_robin/screens/settings/settings.screen.dart';
 
 class Template extends StatefulWidget {
   const Template({super.key});
