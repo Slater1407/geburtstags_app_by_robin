@@ -19,12 +19,14 @@ class _BirthdayDetailScreenState extends State<BirthdayDetailScreen> {
   Widget build(BuildContext context) {
     birthday ??= ModalRoute.of(context)!.settings.arguments as Birthday;
 
+    // ignore: no_leading_underscores_for_local_identifiers
     void _showAlertDialog() {
       showDialog(
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text("${birthday!.name} wirklich löschen?"),
+              title: Text(
+                  "${birthday!.foreName} ${birthday!.lastName} wirklich löschen?"),
               actions: <Widget>[
                 TextButton(
                     onPressed: () {
@@ -85,7 +87,7 @@ class _BirthdayDetailScreenState extends State<BirthdayDetailScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Name: ${birthday!.name}",
+              "Name: ${birthday!.foreName} ${birthday!.lastName}",
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 15),

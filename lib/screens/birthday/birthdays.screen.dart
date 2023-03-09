@@ -17,9 +17,14 @@ class BirthdaysScreen extends StatefulWidget {
 }
 
 class _BirthdaysScreenState extends State<BirthdaysScreen> {
+  final filterList = <String>['Vorname', 'Nachname', 'Geburtstag'];
+  String dropDownValue = 'Vorname';
+
   @override
   Widget build(BuildContext context) {
+    BirthdayRepo().sortFromFilter(dropDownValue);
     final birthdays = BirthdayRepo().getBirthdays();
+    //birthdays = BirthdayRepo().sortFromFilter(dropDownValue);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -27,6 +32,34 @@ class _BirthdaysScreenState extends State<BirthdaysScreen> {
           "Geburtstage",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
+        actions: [
+          Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: DropdownButton(
+                dropdownColor: const Color.fromARGB(255, 26, 120, 197),
+                value: dropDownValue,
+                elevation: 16,
+                icon: const Icon(
+                  Icons.arrow_downward,
+                  color: Colors.white,
+                ),
+                onChanged: (String? value) {
+                  setState(() {
+                    dropDownValue = value!;
+                  });
+                },
+                items: filterList.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(
+                      value,
+                      style: const TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+                  );
+                }).toList(),
+              ))
+        ],
       ),
       body: ListView.builder(
           itemCount: birthdays.length,
@@ -49,8 +82,8 @@ class _BirthdaysScreenState extends State<BirthdaysScreen> {
                           },
                         ),
                         duration: const Duration(seconds: 4),
-                        content:
-                            Text("Geburtstag von ${birthday.name} gelöscht")));
+                        content: Text(
+                            "Geburtstag von ${birthday.foreName} ${birthday.foreName} gelöscht")));
                   });
                 },
                 key: UniqueKey(),
@@ -70,7 +103,8 @@ class _BirthdaysScreenState extends State<BirthdaysScreen> {
                 ),
                 child: ListTile(
                   leading: Icon(birthdays[index].profileImage),
-                  title: Text(birthdays[index].name),
+                  title: Text(
+                      '${birthdays[index].foreName} ${birthdays[index].lastName}'),
                   subtitle: Text(birthdays[index].genderString!),
                   trailing: Text(
                       DateFormat("dd.MM.yyyy").format(birthdays[index].date)),

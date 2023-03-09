@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({super.key});
+class DashboardScreen extends StatelessWidget {
+  const DashboardScreen({super.key});
 
-  static final routeName = (SettingsScreen).toString();
+  static final routeName = (DashboardScreen).toString();
 
   @override
   Widget build(BuildContext context) {
@@ -11,16 +11,16 @@ class SettingsScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          "Einstellungen",
+          "Dashboard",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(30.0),
+      body: const Padding(
+        padding: EdgeInsets.all(30.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Text("Test"),
           ],
         ),

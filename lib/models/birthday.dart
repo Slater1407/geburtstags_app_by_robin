@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class Birthday {
-  Birthday({required this.name, required this.date, required this.gender}) {
+  Birthday(
+      {required this.foreName,
+      required this.lastName,
+      required this.date,
+      required this.gender}) {
     if (gender == Genders.male) {
       genderString = "männlich";
       profileImage = Icons.male_outlined;
@@ -13,7 +17,8 @@ class Birthday {
     dateString = DateFormat("dd.MM.yyyy").format(date);
   }
 
-  String name;
+  String foreName;
+  String lastName;
   DateTime date;
   String? dateString;
   Genders gender;

@@ -18,7 +18,8 @@ class BirthdayForm extends StatefulWidget {
 class _BirthdayFormState extends State<BirthdayForm> {
   final _formKey = GlobalKey<FormState>();
 
-  TextEditingController nameController = TextEditingController();
+  TextEditingController foreNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
   TextEditingController yearController = TextEditingController();
   TextEditingController monthController = TextEditingController();
   TextEditingController dayController = TextEditingController();
@@ -30,7 +31,10 @@ class _BirthdayFormState extends State<BirthdayForm> {
     widget.birthday?.genderString ??= BirthdayForm.dropDownList.first;
     dropDownValue ??= widget.birthday?.genderString;
     if (widget.isEdit) {
-      nameController = TextEditingController(text: widget.birthday!.name);
+      foreNameController =
+          TextEditingController(text: widget.birthday!.foreName);
+      lastNameController =
+          TextEditingController(text: widget.birthday!.lastName);
       yearController =
           TextEditingController(text: widget.birthday!.date.year.toString());
       monthController =
@@ -51,7 +55,8 @@ class _BirthdayFormState extends State<BirthdayForm> {
                   gender = Genders.male;
                 }
                 Birthday birthday = Birthday(
-                    name: nameController.text,
+                    foreName: foreNameController.text,
+                    lastName: lastNameController.text,
                     date: DateTime(
                         int.parse(yearController.text),
                         int.parse(monthController.text),
@@ -91,16 +96,36 @@ class _BirthdayFormState extends State<BirthdayForm> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TextFormField(
-                controller: nameController,
-                keyboardType: TextInputType.text,
-                decoration: const InputDecoration(labelText: "Name"),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Bitte Namen eingeben";
-                  }
-                  return null;
-                },
+              Row(
+                children: [
+                  Expanded(
+                    child: TextFormField(
+                      controller: foreNameController,
+                      keyboardType: TextInputType.text,
+                      decoration: const InputDecoration(labelText: "Vorname"),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Bitte Vornamen eingeben";
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  const SizedBox(width: 10.0),
+                  Expanded(
+                    child: TextFormField(
+                      controller: lastNameController,
+                      keyboardType: TextInputType.text,
+                      decoration: const InputDecoration(labelText: "Nachname"),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Bitte Nachnamen eingeben";
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 30.0),
               Row(

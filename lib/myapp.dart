@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:geburtstags_app_by_robin/screens/birthday/birthdays.screen.dart';
 import 'package:geburtstags_app_by_robin/screens/birthday/detail/birthday.detail.screen.dart';
 import 'package:geburtstags_app_by_robin/screens/birthday/forms/birthday.form.dart';
-import 'package:geburtstags_app_by_robin/screens/dashboard.screen.dart';
-import 'package:geburtstags_app_by_robin/screens/settings.screen.dart';
+import 'package:geburtstags_app_by_robin/screens/dashboard/dashboard.screen.dart';
+import 'package:geburtstags_app_by_robin/screens/settings/settings.screen.dart';
 
 import 'templates/template.dart';
 
